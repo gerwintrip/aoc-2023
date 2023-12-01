@@ -35,43 +35,14 @@ fun firstAndLastNumbers(line: String): Int {
 }
 
 fun replaceNumberStringsWithIntegers(line: String): String {
-    var index = 0
-    var newLine = line
-    while (index < newLine.length) {
-        if (newLine[index].code in 48..57) {
-            index++
-            continue
-        }
-        if (index + 3 <= newLine.length && newLine.substring(index, index + 3) == "one") {
-            newLine = newLine.replaceRange(index, index + 3, "o1e")
-            index++
-        } else if (index + 3 <= newLine.length && newLine.substring(index, index + 3) == "two") {
-            newLine = newLine.replaceRange(index, index + 3, "2o")
-            index++
-        } else if (index + 5 <= newLine.length && newLine.substring(index, index + 5) == "three") {
-            newLine = newLine.replaceRange(index, index + 5, "t3e")
-            index++
-        } else if (index + 4 <= newLine.length && newLine.substring(index, index + 4) == "four") {
-            newLine = newLine.replaceRange(index, index + 4, "4")
-            index++
-        } else if (index + 4 <= newLine.length && newLine.substring(index, index + 4) == "five") {
-            newLine = newLine.replaceRange(index, index + 4, "5e")
-            index++
-        } else if (index + 3 <= newLine.length && newLine.substring(index, index + 3) == "six") {
-            newLine = newLine.replaceRange(index, index + 3, "6")
-            index++
-        } else if (index + 5 <= newLine.length && newLine.substring(index, index + 5) == "seven") {
-            newLine = newLine.replaceRange(index, index + 5, "7n")
-            index++
-        } else if (index + 5 <= newLine.length && newLine.substring(index, index + 5) == "eight") {
-            newLine = newLine.replaceRange(index, index + 5, "e8t")
-            index++
-        } else if (index + 4 <= newLine.length && newLine.substring(index, index + 4) == "nine") {
-            newLine = newLine.replaceRange(index, index + 4, "n9e")
-            index++
-        } else {
-            index++
-        }
+    val numberMap = mapOf(
+        "one" to "o1e", "two" to "t2o", "three" to "t3e",
+        "four" to "4", "five" to "5e", "six" to "6",
+        "seven" to "7n", "eight" to "e8t", "nine" to "9e"
+    )
+    var resultLine = line
+    numberMap.forEach {(key, value) ->
+        resultLine = resultLine.replace(key, value)
     }
-    return newLine
+    return resultLine
 }
